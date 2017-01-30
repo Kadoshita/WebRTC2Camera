@@ -1,0 +1,2 @@
+# WebRTC2Camera
+getUserMediaでスマホの前後のカメラへの同時アクセスに挑戦したときに書いたコード
