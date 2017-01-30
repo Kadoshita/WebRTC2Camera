@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+	<title>WebRTC2Camera</title>
+</head>
+<body>
+	<video id="front-cam" muted autoplay></video><br>
+	<p>Front Camera</p>
+	<button id="fcam-btn">Get Stream</button><br>
+	<video id="back-cam" muted autoplay></video>
+	<p>Back Camera</p>
+	<button id="bcam-btn">Get Stream</button>
+	<script type="text/javascript">
+		var fcam=document.getElementById('front-cam');
+		var bcam=document.getElementById('back-cam');
+
+		var const={
+			video: {
+				width: {
+					facingMode: 'user'
+				}
+			},
+			audio: false
+		};
+
+		document.getElementById('fcam-btn').onclick=function () {
+			navigator.mediaDevices.getUserMedia(const)
+			.then(function (stream){
+				fcam.src=window.URL.createObjectURL(stream);
+			}).catch(function (error){
+				console.error('could not get user media:', error);
+				return;
+			});
+		};
+
+		document.getElementById('bcam-btn').onclick=function () {
+			navigator.mediaDevices.getUserMedia(const)
+			.then(function (stream){
+				bcam.src=window.URL.createObjectURL(stream);
+			}).catch(function (error){
+				console.error('could not get user media:', error);
+				return;
+			});
+		};
+	</script>
+</body>
+</html>
